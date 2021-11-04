@@ -231,3 +231,17 @@ end
 Then /^show me the page$/ do
   save_and_open_page
 end
+
+Given /^(?:|I am )a valid user$/ do
+  @user = User.create!({
+    :email => "test@test.com",
+    :password => "123456",
+    :password_confirmation => "123456"})
+end
+
+Given /^some file is selected$/ do 
+  @current_user = @user
+  @params = ActionController::Parameters.new(user: {resume: "test resume"})
+  @current_user.resume = 'test resume file'
+end
+
